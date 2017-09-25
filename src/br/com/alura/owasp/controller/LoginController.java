@@ -28,6 +28,7 @@ public class LoginController {
 			return "adicionarProduto";
 		}
 		System.out.println(usuario.getEmail());
+		System.out.println(usuario.getSenha());
 		redirect.addFlashAttribute("mensagem",
 				"Produto adicionado com sucesso!");
 		return "redirect:/usuario";
