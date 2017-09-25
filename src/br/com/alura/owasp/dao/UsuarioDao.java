@@ -1,5 +1,8 @@
 package br.com.alura.owasp.dao;
 
-public class UsuarioDao {
+import br.com.alura.owasp.model.Usuario;
 
+public interface UsuarioDao {
+
+	public void adiciona(Usuario usuario);
 }

@@ -11,6 +11,10 @@
 </head>
 <body>
 	<div class="container">
+	
+		<c:if test="${not empty mensagem}">
+			<p>${mensagem}</p>
+		</c:if>
 
 		<form:form action="${s:mvcUrl('LC#adicionaUsuario').build()}" method="POST" commandName="usuario" >
 			<div class="form-group">

@@ -1,5 +1,6 @@
 package br.com.alura.owasp.controller;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -8,10 +9,14 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import br.com.alura.owasp.dao.UsuarioDao;
 import br.com.alura.owasp.model.Usuario;
 
 @Controller
 public class LoginController {
+	
+	@Autowired
+	private UsuarioDao dao;
 
 	@RequestMapping(value = "/usuario")
 	public String usuario(Model model) {
@@ -27,8 +32,7 @@ public class LoginController {
 		if (result.hasErrors()) {
 			return "adicionarProduto";
 		}
-		System.out.println(usuario.getEmail());
-		System.out.println(usuario.getSenha());
+		dao.adiciona(usuario);
 		redirect.addFlashAttribute("mensagem",
 				"Produto adicionado com sucesso!");
 		return "redirect:/usuario";
