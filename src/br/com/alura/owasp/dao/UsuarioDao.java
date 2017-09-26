@@ -5,5 +5,5 @@ import br.com.alura.owasp.model.Usuario;
 public interface UsuarioDao {
 
 	public String adiciona(Usuario usuario);
-	public Usuario retornaUsuario(Usuario usuario);
+	public String procuraUsuario(Usuario usuario);
 }

@@ -11,34 +11,34 @@ import br.com.alura.owasp.dao.UsuarioDao;
 import br.com.alura.owasp.model.Usuario;
 
 @Controller
-public class LoginController {
+public class CadastrarUsuarioController {
 	
 	@Autowired
 	private UsuarioDao dao;
 	
-	@RequestMapping(value="/loginUsuario")
-	public String loginUsuario(Model model){
+	@RequestMapping(value = "/cadastro")
+	public String usuario(Model model) {
 		Usuario usuario = new Usuario();
 		model.addAttribute(usuario);
-		return "logar";
+		return "cadastrar";
 	}
-	
-	@RequestMapping(value="/redirecionaUsuarioLogado")
-	public String redirecionaUsuarioLogado(@ModelAttribute(value = "usuario") Usuario usuario,
-			RedirectAttributes redirect, Model model){
-		String mensagem = dao.procuraUsuario(usuario);
-		if(mensagem.equals("usuarioExiste")){
-			return "usuarioLogado";
-		}else if (mensagem.equals("usuarioNaoExiste")){
+
+	@RequestMapping(value = "/adicionaUsuario")
+	public String adicionaUsuario(
+			@ModelAttribute(value = "usuario") Usuario usuario,
+			RedirectAttributes redirect, Model model) {
+		String adiciona = dao.adiciona(usuario);
+		if(adiciona.equals("usuarioAdicionado")){
 			redirect.addFlashAttribute("mensagem",
-					"Usuário não cadastrado!");
-			return "redirect:/loginUsuario";
+					"Usuário cadastrado com sucesso!");
+			return "redirect:/cadastro";
 		}else{
 			redirect.addFlashAttribute("mensagem",
-					mensagem);
-			return "redirect:/loginUsuario";
+					adiciona);
 		}
 		
+		return "redirect:/cadastro";
+	
 	}
 
 }

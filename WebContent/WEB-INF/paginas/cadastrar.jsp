@@ -6,7 +6,7 @@
 			<p>${mensagem}</p>
 		</c:if>
 
-		<form:form action="${s:mvcUrl('LC#adicionaUsuario').build()}" commandName="usuario" method="get">
+		<form:form action="${s:mvcUrl('CUC#adicionaUsuario').build()}" commandName="usuario" method="get">
 			<div class="form-group">
 				<label for="exampleInputEmail1">Email:</label> <input
 					type="email" class="form-control" id="email" name="email"
