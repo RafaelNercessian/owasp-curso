@@ -19,12 +19,16 @@ public class UsuarioDaoImpl implements UsuarioDao {
 
 	@Override
 	public String adiciona(Usuario usuario) {
+		Usuario chamaUsuarioNoBanco = chamaUsuarioNoBanco(usuario);
+		if(chamaUsuarioNoBanco.getEmail()!=null && chamaUsuarioNoBanco.getSenha()!=null){
+			return "usuarioJaExiste";
+		}
 		String query = "insert into usuarios (email,senha) values ('"
 				+ usuario.getEmail() + "','" + usuario.getSenha() + "');";
 		try {
 			Statement statement = connection.createStatement();
 			statement.executeUpdate(query);
-			return "";
+			return "usuarioAdicionado";
 		} catch (SQLException e) {
 			return e.toString();
 
@@ -33,6 +37,10 @@ public class UsuarioDaoImpl implements UsuarioDao {
 
 	@Override
 	public Usuario retornaUsuario(Usuario usuario) {
+		return chamaUsuarioNoBanco(usuario);
+	}
+
+	private Usuario chamaUsuarioNoBanco(Usuario usuario) {
 		String query = "SELECT * FROM usuarios WHERE email="
 				+"'"+usuario.getEmail()+"'"+" and senha="+"'"+usuario.getSenha()+"';";
 		try {

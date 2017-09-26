@@ -28,7 +28,12 @@ public class LoginController {
 			@ModelAttribute(value = "usuario") Usuario usuario,
 			RedirectAttributes redirect, Model model) {
 		String adiciona = dao.adiciona(usuario);
-		if(adiciona.equals("")){
+		if(adiciona.equals("usuarioJaExiste")){
+			redirect.addFlashAttribute("mensagem",
+					"Usuário já foi cadastrado!");
+			return "redirect:/cadastro";
+		}
+		else if(adiciona.equals("usuarioAdicionado")){
 			redirect.addFlashAttribute("mensagem",
 					"Usuário cadastrado com sucesso!");
 			return "redirect:/cadastro";
@@ -48,7 +53,7 @@ public class LoginController {
 		return "logar";
 	}
 	
-	@RequestMapping(value="redirecionaUsuarioLogado")
+	@RequestMapping(value="/redirecionaUsuarioLogado")
 	public String redirecionaUsuarioLogado(@ModelAttribute(value = "usuario") Usuario usuario,
 			RedirectAttributes redirect, Model model){
 		Usuario retornaUsuario = dao.retornaUsuario(usuario);
