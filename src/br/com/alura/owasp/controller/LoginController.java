@@ -16,7 +16,7 @@ public class LoginController {
 	@Autowired
 	private UsuarioDao dao;
 
-	@RequestMapping(value = "/")
+	@RequestMapping(value = "/cadastro")
 	public String usuario(Model model) {
 		Usuario usuario = new Usuario();
 		model.addAttribute(usuario);
@@ -37,7 +37,7 @@ public class LoginController {
 					adiciona);
 		}
 		
-		return "redirect:/";
+		return "redirect:/cadastro";
 	
 	}
 

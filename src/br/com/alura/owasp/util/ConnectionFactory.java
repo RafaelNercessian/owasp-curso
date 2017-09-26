@@ -1,4 +1,4 @@
-package br.com.alura.owasp.controller;
+package br.com.alura.owasp.util;
 
 import java.sql.Connection;
 import java.sql.DriverManager;

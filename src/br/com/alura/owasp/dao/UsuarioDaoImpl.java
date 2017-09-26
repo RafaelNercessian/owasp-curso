@@ -7,8 +7,8 @@ import java.sql.Statement;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
-import br.com.alura.owasp.controller.ConnectionFactory;
 import br.com.alura.owasp.model.Usuario;
+import br.com.alura.owasp.util.ConnectionFactory;
 
 @Repository
 @Transactional
