@@ -17,14 +17,16 @@ public class UsuarioDaoImpl implements UsuarioDao {
 	Connection connection = new ConnectionFactory().getConnection();
 
 	@Override
-	public void adiciona(Usuario usuario) {
+	public String adiciona(Usuario usuario) {
 		String query = "insert into usuarios (email,senha) values ('"
 				+ usuario.getEmail() + "','" + usuario.getSenha() + "');";
 		try {
 			Statement statement = connection.createStatement();
 			statement.executeUpdate(query);
+			return "";
 		} catch (SQLException e) {
-			e.printStackTrace();
+			return e.toString();
+			
 		}
 	}
 
