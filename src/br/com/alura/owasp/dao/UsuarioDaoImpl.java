@@ -1,6 +1,7 @@
 package br.com.alura.owasp.dao;
 
 import java.sql.Connection;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
@@ -26,7 +27,25 @@ public class UsuarioDaoImpl implements UsuarioDao {
 			return "";
 		} catch (SQLException e) {
 			return e.toString();
-			
+
+		}
+	}
+
+	@Override
+	public Usuario retornaUsuario(Usuario usuario) {
+		String query = "SELECT * FROM usuarios WHERE email="
+				+"'"+usuario.getEmail()+"'"+" and senha="+"'"+usuario.getSenha()+"';";
+		try {
+			Statement statement = connection.createStatement();
+			ResultSet results = statement.executeQuery(query);
+			Usuario usuarioRetorno = new Usuario();
+			while(results.next()){
+				usuarioRetorno.setEmail(results.getString("email"));
+				usuarioRetorno.setSenha(results.getString("senha"));
+			}
+			return usuarioRetorno;
+		} catch (SQLException e) {
+			return null;
 		}
 	}
 

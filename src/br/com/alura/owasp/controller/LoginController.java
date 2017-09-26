@@ -41,7 +41,6 @@ public class LoginController {
 	
 	}
 	
-	
 	@RequestMapping(value="/loginUsuario")
 	public String loginUsuario(Model model){
 		Usuario usuario = new Usuario();
@@ -50,8 +49,17 @@ public class LoginController {
 	}
 	
 	@RequestMapping(value="redirecionaUsuarioLogado")
-	public String redirecionaUsuarioLogado(){
-		return "usuarioCadastrado";
+	public String redirecionaUsuarioLogado(@ModelAttribute(value = "usuario") Usuario usuario,
+			RedirectAttributes redirect, Model model){
+		Usuario retornaUsuario = dao.retornaUsuario(usuario);
+		if(retornaUsuario.getEmail()!=null && retornaUsuario.getSenha()!=null){
+			return "usuarioLogado";
+		}else{
+			redirect.addFlashAttribute("mensagem",
+					"Usuário não encontrado");
+			return "redirect:/loginUsuario";
+		}
+		
 	}
 
 }
