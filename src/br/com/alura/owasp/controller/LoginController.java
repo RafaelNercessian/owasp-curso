@@ -30,8 +30,8 @@ public class LoginController {
 		String adiciona = dao.adiciona(usuario);
 		if(adiciona.equals("")){
 			redirect.addFlashAttribute("mensagem",
-					"Produto adicionado com sucesso!");
-			return "usuarioCadastrado";
+					"Usuário cadastrado com sucesso!");
+			return "redirect:/cadastro";
 		}else{
 			redirect.addFlashAttribute("mensagem",
 					adiciona);
@@ -39,6 +39,19 @@ public class LoginController {
 		
 		return "redirect:/cadastro";
 	
+	}
+	
+	
+	@RequestMapping(value="/loginUsuario")
+	public String loginUsuario(Model model){
+		Usuario usuario = new Usuario();
+		model.addAttribute(usuario);
+		return "logar";
+	}
+	
+	@RequestMapping(value="redirecionaUsuarioLogado")
+	public String redirecionaUsuarioLogado(){
+		return "usuarioCadastrado";
 	}
 
 }

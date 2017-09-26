@@ -7,6 +7,6 @@
 <title>Insert title here</title>
 </head>
 <body>
-<p>Usuario cadastrado com sucesso!</p>
+<p>Usuario logado com sucesso!</p>
 </body>
 </html>
