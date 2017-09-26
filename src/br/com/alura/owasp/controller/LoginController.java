@@ -31,6 +31,7 @@ public class LoginController {
 		if(adiciona.equals("")){
 			redirect.addFlashAttribute("mensagem",
 					"Produto adicionado com sucesso!");
+			return "usuarioCadastrado";
 		}else{
 			redirect.addFlashAttribute("mensagem",
 					adiciona);
