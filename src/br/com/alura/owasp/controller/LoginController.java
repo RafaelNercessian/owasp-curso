@@ -16,14 +16,14 @@ public class LoginController {
 	@Autowired
 	private UsuarioDao dao;
 	
-	@RequestMapping(value="/loginUsuario")
+	@RequestMapping("/loginUsuario")
 	public String loginUsuario(Model model){
 		Usuario usuario = new Usuario();
 		model.addAttribute(usuario);
 		return "logar";
 	}
 	
-	@RequestMapping(value="/redirecionaUsuarioLogado")
+	@RequestMapping("/redirecionaUsuarioLogado")
 	public String redirecionaUsuarioLogado(@ModelAttribute(value = "usuario") Usuario usuario,
 			RedirectAttributes redirect, Model model){
 		String mensagem = dao.procuraUsuario(usuario);

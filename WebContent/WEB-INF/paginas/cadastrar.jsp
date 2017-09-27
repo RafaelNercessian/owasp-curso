@@ -1,5 +1,4 @@
 <%@include file="/WEB-INF/paginas/cabecalho.jsp"%>
-<body>
 	<div class="container formulario-cadastro-usuario">
 	
 		<c:if test="${not empty mensagem}">

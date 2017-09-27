@@ -1,6 +1,6 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
-<%@taglib uri="http://www.springframework.org/tags" prefix="s" %>
+<%@taglib uri="http://www.springframework.org/tags" prefix="s"%>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -43,10 +43,12 @@
 				<div id="navbar" class="navbar-collapse collapse">
 					<ul class="nav navbar-nav">
 						<li class="active"><a href="<c:url value="/"/>" /><strong>Home</strong></a></li>
-						<c:if test="${pageContext.request.userPrincipal.name == null}">
-							<li><a href='<c:url value="/loginUsuario"/>' /><strong><span class="glyphicon glyphicon-log-in"></span> Login</strong></a></li>
-							<li><a href='<c:url value="/cadastro"/>' /><strong><span class="glyphicon glyphicon-pencil"></span> Cadastro</strong></a></li>
-						</c:if>
+						<li><a href='<c:url value="/loginUsuario"/>' /><strong><span
+								class="glyphicon glyphicon-log-in"></span> Login</strong></a></li>
+						<li><a href='<c:url value="/cadastro"/>' /><strong><span
+								class="glyphicon glyphicon-pencil"></span> Cadastro</strong></a></li>
+						<li><a href='<c:url value="/blog"/>' /><strong><span
+								class="glyphicon glyphicon-pencil"></span> Blog</strong></a></li>
 					</ul>
 				</div>
 			</div>

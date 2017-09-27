@@ -16,14 +16,14 @@ public class CadastrarUsuarioController {
 	@Autowired
 	private UsuarioDao dao;
 	
-	@RequestMapping(value = "/cadastro")
+	@RequestMapping("/cadastro")
 	public String usuario(Model model) {
 		Usuario usuario = new Usuario();
 		model.addAttribute(usuario);
 		return "cadastrar";
 	}
 
-	@RequestMapping(value = "/adicionaUsuario")
+	@RequestMapping("/adicionaUsuario")
 	public String adicionaUsuario(
 			@ModelAttribute(value = "usuario") Usuario usuario,
 			RedirectAttributes redirect, Model model) {
