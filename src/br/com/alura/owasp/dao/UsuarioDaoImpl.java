@@ -5,6 +5,10 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
+import javax.persistence.TypedQuery;
+
 import org.springframework.stereotype.Repository;
 
 import br.com.alura.owasp.model.Usuario;
@@ -15,10 +19,14 @@ public class UsuarioDaoImpl implements UsuarioDao {
 
 	Connection connection = new ConnectionFactory().getConnection();
 
+	@PersistenceContext
+	private EntityManager manager;
+
 	@Override
 	public String adiciona(Usuario usuario) {
 		String query = "insert into usuarios (email,senha,role) values ('"
-				+ usuario.getEmail() + "','" + usuario.getSenha() + "','" +usuario.getRole()+"');";
+				+ usuario.getEmail() + "','" + usuario.getSenha() + "','"
+				+ usuario.getRole() + "');";
 		try {
 			Statement statement = connection.createStatement();
 			statement.executeUpdate(query);
@@ -42,15 +50,33 @@ public class UsuarioDaoImpl implements UsuarioDao {
 				usuarioRetorno.setEmail(results.getString("email"));
 				usuarioRetorno.setSenha(results.getString("senha"));
 			}
-			if(usuarioRetorno.getEmail()==null && usuarioRetorno.getSenha()==null){
+			if (usuarioRetorno.getEmail() == null
+					&& usuarioRetorno.getSenha() == null) {
 				return "usuarioNaoExiste";
-			}else{
+			} else {
 				return "usuarioExiste";
 			}
 		} catch (SQLException e) {
 			return e.toString();
 		}
 	}
-	
+
+	@Override
+	public boolean verificaSeUsuarioEhAdmin(Usuario usuario) {
+		TypedQuery<Usuario> query = manager
+				.createQuery(
+						"select u from Usuario u where u.email =:email and u.senha =:senha",
+						Usuario.class);
+		query.setParameter("email", usuario.getEmail());
+		query.setParameter("senha", usuario.getSenha());
+		Usuario retornoUsuario = query.getResultList()
+				.stream().findFirst().orElse(null);
+		if (retornoUsuario != null
+				&& retornoUsuario.getRole().equals("ROLE_ADMIN")) {
+			return true;
+		} else {
+			return false;
+		}
+	}
 
 }
