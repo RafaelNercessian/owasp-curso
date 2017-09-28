@@ -51,9 +51,9 @@ public class CadastrarUsuarioController {
 
 	private void chamaLogicaParaTratarImagem(Usuario usuario,
 			HttpServletRequest request) {
-		String nomeImagem = usuario.getImagem().getOriginalFilename();
+		usuario.setNomeImagem(usuario.getImagem().getOriginalFilename());
 		File imageFile = new File(request.getServletContext().getRealPath(
-				"/image"), nomeImagem);
+				"/image"), usuario.getNomeImagem());
 		try {
 			usuario.getImagem().transferTo(imageFile);
 		} catch (IOException e) {

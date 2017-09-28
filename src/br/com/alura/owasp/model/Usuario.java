@@ -2,14 +2,11 @@ package br.com.alura.owasp.model;
 
 import java.io.Serializable;
 
-import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.persistence.Transient;
-import javax.swing.plaf.multi.MultiPanelUI;
 
-import org.hibernate.annotations.Type;
 import org.springframework.web.multipart.MultipartFile;
 
 
@@ -25,7 +22,14 @@ public class Usuario implements Serializable{
 	private String role="ROLE_USER";
 	@Transient
 	private MultipartFile imagem;
-		
+	private String nomeImagem;
+	
+	public String getNomeImagem() {
+		return nomeImagem;
+	}
+	public void setNomeImagem(String nomeImagem) {
+		this.nomeImagem = nomeImagem;
+	}
 	public MultipartFile getImagem() {
 		return imagem;
 	}

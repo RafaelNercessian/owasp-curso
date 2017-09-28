@@ -26,17 +26,12 @@ public class LoginController {
 	@RequestMapping("/redirecionaUsuarioLogado")
 	public String redirecionaUsuarioLogado(@ModelAttribute(value = "usuario") Usuario usuario,
 			RedirectAttributes redirect, Model model){
-		String mensagem = dao.procuraUsuario(usuario);
-		if(mensagem.equals("usuarioExiste")){
-			model.addAttribute("usuario", usuario);
+		Usuario buscaUsuario = dao.procuraUsuario(usuario);
+		if(buscaUsuario != null){
+			model.addAttribute("usuario", buscaUsuario);
 			return "usuarioLogado";
-		}else if (mensagem.equals("usuarioNaoExiste")){
-			redirect.addFlashAttribute("mensagem",
-					"Usuário não cadastrado!");
-			return "redirect:/loginUsuario";
 		}else{
-			redirect.addFlashAttribute("mensagem",
-					mensagem);
+			redirect.addFlashAttribute("mensagem","Usuário não encontrado");
 			return "redirect:/loginUsuario";
 		}
 		

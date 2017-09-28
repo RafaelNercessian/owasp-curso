@@ -24,9 +24,9 @@ public class UsuarioDaoImpl implements UsuarioDao {
 
 	@Override
 	public String adiciona(Usuario usuario) {
-		String query = "insert into usuarios (email,senha,role) values ('"
+		String query = "insert into usuarios (email,senha,role,nomeImagem) values ('"
 				+ usuario.getEmail() + "','" + usuario.getSenha() + "','"
-				+ usuario.getRole() + "');";
+				+ usuario.getRole() + "','"+usuario.getNomeImagem()+"');";
 		try {
 			Statement statement = connection.createStatement();
 			statement.executeUpdate(query);
@@ -38,7 +38,7 @@ public class UsuarioDaoImpl implements UsuarioDao {
 	}
 
 	@Override
-	public String procuraUsuario(Usuario usuario) {
+	public Usuario procuraUsuario(Usuario usuario) {
 		String query = "SELECT * FROM usuarios WHERE email=" + "'"
 				+ usuario.getEmail() + "'" + " and senha=" + "'"
 				+ usuario.getSenha() + "';";
@@ -49,15 +49,16 @@ public class UsuarioDaoImpl implements UsuarioDao {
 			while (results.next()) {
 				usuarioRetorno.setEmail(results.getString("email"));
 				usuarioRetorno.setSenha(results.getString("senha"));
+				usuarioRetorno.setNomeImagem(results.getString("nomeImagem"));
 			}
 			if (usuarioRetorno.getEmail() == null
 					&& usuarioRetorno.getSenha() == null) {
-				return "usuarioNaoExiste";
+				return null;
 			} else {
-				return "usuarioExiste";
+				return usuarioRetorno;
 			}
 		} catch (SQLException e) {
-			return e.toString();
+			return null;
 		}
 	}
 
