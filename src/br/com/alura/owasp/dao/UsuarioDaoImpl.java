@@ -17,8 +17,8 @@ public class UsuarioDaoImpl implements UsuarioDao {
 
 	@Override
 	public String adiciona(Usuario usuario) {
-		String query = "insert into usuarios (email,senha) values ('"
-				+ usuario.getEmail() + "','" + usuario.getSenha() + "');";
+		String query = "insert into usuarios (email,senha,role) values ('"
+				+ usuario.getEmail() + "','" + usuario.getSenha() + "','" +usuario.getRole()+"');";
 		try {
 			Statement statement = connection.createStatement();
 			statement.executeUpdate(query);

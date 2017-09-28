@@ -30,7 +30,7 @@ public class CadastrarUsuarioController {
 		String adiciona = dao.adiciona(usuario);
 		if(adiciona.equals("usuarioAdicionado")){
 			redirect.addFlashAttribute("mensagem",
-					"Usu√°rio cadastrado com sucesso!");
+					"Usu·rio cadastrado com sucesso!");
 			return "redirect:/cadastro";
 		}else{
 			redirect.addFlashAttribute("mensagem",

@@ -2,9 +2,12 @@ package br.com.alura.owasp.model;
 
 import java.io.Serializable;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
+
+import org.hibernate.annotations.Type;
 
 
 @Entity
@@ -16,7 +19,15 @@ public class Usuario implements Serializable{
 	@Id
 	private String email;
 	private String senha;
+	private String role="ROLE_USER";
+		
 	
+	public String getRole() {
+		return role;
+	}
+	public void setRole(String role) {
+		this.role = role;
+	}
 	public String getEmail() {
 		return email;
 	}
