@@ -28,10 +28,11 @@ public class LoginController {
 			RedirectAttributes redirect, Model model){
 		String mensagem = dao.procuraUsuario(usuario);
 		if(mensagem.equals("usuarioExiste")){
+			model.addAttribute("usuario", usuario);
 			return "usuarioLogado";
 		}else if (mensagem.equals("usuarioNaoExiste")){
 			redirect.addFlashAttribute("mensagem",
-					"Usu√°rio n√£o cadastrado!");
+					"Usu·rio n„o cadastrado!");
 			return "redirect:/loginUsuario";
 		}else{
 			redirect.addFlashAttribute("mensagem",

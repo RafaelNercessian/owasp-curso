@@ -6,8 +6,11 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.persistence.Transient;
+import javax.swing.plaf.multi.MultiPanelUI;
 
 import org.hibernate.annotations.Type;
+import org.springframework.web.multipart.MultipartFile;
 
 
 @Entity
@@ -20,8 +23,15 @@ public class Usuario implements Serializable{
 	private String email;
 	private String senha;
 	private String role="ROLE_USER";
+	@Transient
+	private MultipartFile imagem;
 		
-	
+	public MultipartFile getImagem() {
+		return imagem;
+	}
+	public void setImagem(MultipartFile imagem) {
+		this.imagem = imagem;
+	}
 	public String getRole() {
 		return role;
 	}

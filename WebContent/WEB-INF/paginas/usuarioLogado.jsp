@@ -8,5 +8,6 @@
 </head>
 <body>
 <p>Usuario logado com sucesso!</p>
+<img width="100" src="<c:url value="/image/"/>${usuario.imagem.originalFilename}"/>
 </body>
 </html>
